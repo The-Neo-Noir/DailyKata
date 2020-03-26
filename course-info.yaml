@@ -1,10 +1,12 @@
-title: Daily Kata
+title: DailyKata
 language: English
 summary: |-
-  My Daily Kata.
-  Created: Mar 20, 2020, 4:20:59 PM.
+  Daily Kata.
+   Created: Mar 20, 2020, 4:20:59 PM.
 programming_language: Java
 content:
 - Arrays Level 0
 - Arrays Level 1
 - Recursion
+- BackTracking
+- Sorting
