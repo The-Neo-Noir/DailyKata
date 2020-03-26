@@ -1,1 +1,35 @@
-{}
+content:
+- countEvens
+- sum13
+- lucky13
+- fizzArray
+- no14
+- matchUp
+- modThree
+- sameEnds
+- shiftLeft
+- post4
+- withoutTen
+- fizzBuzz
+- bigDiff
+- sum67
+- sum28
+- only14
+- isEverywhere
+- has77
+- haveThree
+- tripleUp
+- tenRun
+- notAlone
+- zeroMax
+- centeredAverage
+- has22
+- more14
+- fizzArray2
+- either24
+- has12
+- twoTwo
+- fizzArray3
+- pre4
+- zeroFront
+- evenOdd
