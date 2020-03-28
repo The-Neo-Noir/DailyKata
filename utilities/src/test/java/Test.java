@@ -22,19 +22,29 @@ public class Test {
 
         String html = "<div id=\"tests\"><table class=\"out\">\n" +
                 "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>biggerTwo([1, 2], [3, 4]) → [3, 4]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>lucky13([0, 2, 4]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>biggerTwo([3, 4], [1, 2]) → [3, 4]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>lucky13([1, 2, 3]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>biggerTwo([1, 1], [1, 2]) → [1, 2]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>lucky13([1, 2, 4]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>biggerTwo([2, 1], [1, 1]) → [2, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>lucky13([2, 7, 2, 8]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>biggerTwo([2, 2], [1, 3]) → [2, 2]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>lucky13([2, 7, 1, 8]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>biggerTwo([1, 3], [2, 2]) → [1, 3]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>lucky13([3, 7, 2, 8]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>biggerTwo([6, 7], [3, 1]) → [6, 7]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>lucky13([2, 7, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>lucky13([1, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>lucky13([2, 2]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>lucky13([2]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>lucky13([3]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>lucky13([]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
                 "<tr><td><center>other tests</center></td><td></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "</tbody></table></div>";
@@ -56,7 +66,7 @@ public class Test {
                             String substring = text.substring(0, i1);
                             String functionName=substring.substring(0,substring.indexOf("("));
                             String paramter =  substring.substring(substring.indexOf("(")+1,substring.length()-2);
-                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + 8)) + ",t." + functionName+"("+ buildString(paramter)+");");//;,"+text.substring(i1+8) +""+text.substring(0, i1)+ text.substring(i1+8));
+                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + 8)) + ",task." + functionName+"("+ buildString(paramter)+"));");//;,"+text.substring(i1+8) +""+text.substring(0, i1)+ text.substring(i1+8));
                         }
                     }
 
@@ -87,6 +97,8 @@ public class Test {
                 sb.append(intreme);
             }
             return sb.toString();
+        }else if( input.contains("true") || input.contains("false")){
+            return input;
         }else{
             return input;
         }
