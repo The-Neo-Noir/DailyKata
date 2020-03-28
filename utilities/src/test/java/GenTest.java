@@ -6,7 +6,6 @@ import org.jsoup.select.Elements;
 import org.jsoup.select.NodeFilter;
 import org.w3c.dom.NodeList;
 import sun.awt.OSInfo;
-import sun.misc.OSEnvironment;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -22,37 +21,49 @@ public class GenTest {
     @org.junit.Test
     @SuppressWarnings(value = "his")
     public void fsn() throws IOException {
-        String parseText="→";
-        int idex=2;
+        String parseText = "→";
+        int idex = 2;
 
         if (!OSInfo.getOSType().equals(OSInfo.OSType.MACOSX)) {
-            parseText = "";
+            parseText = "â†’";
             idex = 8;
         }
 
         String html = "<table class=\"out\">\n" +
                 "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>sumDigits(126) → 9</td><td>9</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([1, 3, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(49) → 13</td><td>13</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([3, 1, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(12) → 3</td><td>3</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([3, 1, 4, 5, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(10) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([3, 1, 4, 5, 6]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(1) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([3, 1, 4, 1, 6, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(0) → 0</td><td>0</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([2, 1, 4, 1, 6, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(730) → 10</td><td>10</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([2, 1, 4, 1, 6]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(1111) → 4</td><td>4</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(11111) → 5</td><td>5</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([2, 1, 3]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(10110) → 3</td><td>3</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([2, 1, 3, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(235) → 10</td><td>10</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>has12([2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>has12([3, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>has12([3, 1, 3, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>has12([3, 5, 9]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>has12([3, 5, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>has12([3, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td>has12([1, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
                 "<tr><td><center>other tests</center></td><td></td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "</tbody></table>";
@@ -87,10 +98,10 @@ public class GenTest {
     private static String buildString(String input) {
         if (input.contains("[")) { // for array type
 
-            StringBuffer result= new StringBuffer();
+            StringBuffer result = new StringBuffer();
             int numberOfElements = 0;
-           //[1,2]
-          //  [3,4],[3,2]
+            //[1,2]
+            //  [3,4],[3,2]
             StringBuffer intreme = new StringBuffer();
             for (char ch : input.toCharArray()) {
                 if (ch == '[') {
@@ -98,17 +109,17 @@ public class GenTest {
 
                 } else if (ch == ']') {
                     intreme.append("}");
-                    if(result.length()==0){
+                    if (result.length() == 0) {
                         result.append("new int[]");
-                    }else{
+                    } else {
                         result.append(",new int[]");
                     }
                     result.append(intreme);
                     intreme = new StringBuffer();
-                } else if(ch==','){
-                     if(!intreme.toString().equals(""))
+                } else if (ch == ',') {
+                    if (!intreme.toString().equals(""))
                         intreme.append(ch + "");
-                }else{
+                } else {
                     intreme.append(ch + "");
                 }
             }
@@ -116,7 +127,7 @@ public class GenTest {
         } else if (input.contains("true") || input.contains("false")) {
             return input;
 
-        }else{
+        } else {
             return input;
         }
     }

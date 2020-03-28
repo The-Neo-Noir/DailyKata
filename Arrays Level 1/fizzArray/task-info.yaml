@@ -3,8 +3,8 @@ files:
 - name: src/Task.java
   visible: true
   placeholders:
-  - offset: 58
-    length: 130
+  - offset: 63
+    length: 125
     placeholder_text: type here
 - name: test/Tests.java
   visible: false

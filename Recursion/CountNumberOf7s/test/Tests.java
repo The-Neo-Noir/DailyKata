@@ -9,7 +9,6 @@ public class Tests {
     // put your test here
 
     Task task = new Task();
-
     assertEquals("count7(717) → 2",2,task.count7(717));
     assertEquals("count7(7) → 1",1,task.count7(7));
     assertEquals("count7(123) → 0",0,task.count7(123));

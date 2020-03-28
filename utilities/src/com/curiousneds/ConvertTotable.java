@@ -33,29 +33,21 @@ public class ConvertTotable {
 
         String html = "<table class=\"out\">\n" +
                 "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>sumDigits(126) → 9</td><td>9</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>shiftLeft([6, 2, 5, 3]) → [2, 5, 3, 6]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(49) → 13</td><td>13</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>shiftLeft([1, 2]) → [2, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(12) → 3</td><td>3</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>shiftLeft([1]) → [1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(10) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>shiftLeft([]) → []</td><td>[]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(1) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>shiftLeft([1, 1, 2, 2, 4]) → [1, 2, 2, 4, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(0) → 0</td><td>0</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>shiftLeft([1, 1, 1]) → [1, 1, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(730) → 10</td><td>10</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>shiftLeft([1, 2, 3]) → [2, 3, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>sumDigits(1111) → 4</td><td>4</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>sumDigits(11111) → 5</td><td>5</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>sumDigits(10110) → 3</td><td>3</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>sumDigits(235) → 10</td><td>10</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td><center>other tests</center></td><td></td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td><center>other tests</center></td><td></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "</tbody></table>";
         Document doc = Jsoup.parseBodyFragment(html);
         Elements select = doc.select("table.out tr ");
