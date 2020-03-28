@@ -31,39 +31,25 @@ public class GenTest {
 
         String html = "<table class=\"out\">\n" +
                 "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>has12([1, 3, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([2, 4, 1, 2]) → [1, 2]</td><td>[1, 2]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([3, 1, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([4, 1, 4, 2]) → [2]</td><td>[2]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([3, 1, 4, 5, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([4, 4, 1, 2, 3]) → [1, 2, 3]</td><td>[1, 2, 3]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([3, 1, 4, 5, 6]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([4, 2]) → [2]</td><td>[2]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([3, 1, 4, 1, 6, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([4, 4, 3]) → [3]</td><td>[3]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([2, 1, 4, 1, 6, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([4, 4]) → []</td><td>[]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([2, 1, 4, 1, 6]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([4]) → []</td><td>[]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([2, 4, 1, 4, 3, 2]) → [3, 2]</td><td>[3, 2]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([2, 1, 3]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([4, 1, 4, 2, 2, 2]) → [2, 2, 2]</td><td>[2, 2, 2]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>has12([2, 1, 3, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>has12([2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>has12([3, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>has12([3, 1, 3, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>has12([3, 5, 9]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>has12([3, 5, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>has12([3, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>has12([1, 2]) → true</td><td>true</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>post4([3, 4, 3, 2]) → [3, 2]</td><td>[3, 2]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
                 "<tr><td><center>other tests</center></td><td></td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "</tbody></table>";
