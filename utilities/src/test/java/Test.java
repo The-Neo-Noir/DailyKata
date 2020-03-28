@@ -20,34 +20,22 @@ public class Test {
     @org.junit.Test
     public void fsn() throws IOException {
 
-        String html = "<div id=\"tests\"><table class=\"out\">\n" +
+        String html = "<table class=\"out\">\n" +
                 "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>lucky13([0, 2, 4]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>fizzArray(4) → [0, 1, 2, 3]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>lucky13([1, 2, 3]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>fizzArray(1) → [0]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>lucky13([1, 2, 4]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>fizzArray(10) → [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>lucky13([2, 7, 2, 8]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>fizzArray(0) → []</td><td>[]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>lucky13([2, 7, 1, 8]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>fizzArray(2) → [0, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>lucky13([3, 7, 2, 8]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>lucky13([2, 7, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>lucky13([1, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>lucky13([2, 2]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>lucky13([2]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>lucky13([3]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>lucky13([]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>fizzArray(7) → [0, 1, 2, 3, 4, 5, 6]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
                 "<tr><td><center>other tests</center></td><td></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "</tbody></table></div>";
+                "</tbody></table>";
         Document doc = Jsoup.parseBodyFragment(html);
         Elements select = doc.select("table.out tr ");
 
@@ -60,13 +48,13 @@ public class Test {
                     if (!element1.is("th")) {
                         String text = new String(element1.text().getBytes(
                                 StandardCharsets.UTF_8));
-                        int i1 = text.indexOf("â†’");
+                        int i1 = text.indexOf("→");
                         if (i1 != -1) {
                            // assertEquals("mgs",)
                             String substring = text.substring(0, i1);
                             String functionName=substring.substring(0,substring.indexOf("("));
                             String paramter =  substring.substring(substring.indexOf("(")+1,substring.length()-2);
-                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + 8)) + ",task." + functionName+"("+ buildString(paramter)+"));");//;,"+text.substring(i1+8) +""+text.substring(0, i1)+ text.substring(i1+8));
+                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + 2)) + ",task." + functionName+"("+ buildString(paramter)+"));");
                         }
                     }
 
