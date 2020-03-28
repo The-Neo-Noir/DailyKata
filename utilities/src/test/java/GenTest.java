@@ -22,29 +22,31 @@ public class GenTest {
 
         String html = "<table class=\"out\">\n" +
                 "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>matchUp([1, 2, 3], [2, 3, 10]) → 2</td><td>2</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([2, 1, 3, 5]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([1, 2, 3], [2, 3, 5]) → 3</td><td>3</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([2, 1, 2, 5]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([1, 2, 3], [2, 3, 3]) → 2</td><td>2</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([2, 4, 2, 5]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([5, 3], [5, 5]) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([1, 2, 1, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([5, 3], [4, 4]) → 2</td><td>2</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([9, 9, 9]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([5, 3], [3, 3]) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([1, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([5, 3], [2, 2]) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([1, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([5, 3], [1, 1]) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([5, 3], [0, 0]) → 0</td><td>0</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([4], [4]) → 0</td><td>0</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([9, 7, 2, 9]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>matchUp([4], [5]) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([9, 7, 2, 9, 2, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td><center>other tests</center></td><td></td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>modThree([9, 7, 2, 9, 2, 2, 6]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "\n" +
+                "<tr><td><center>other tests</center></td><td></td><td>X</td><td class=\"no\"></td></tr>\n" +
                 "</tbody></table>";
         Document doc = Jsoup.parseBodyFragment(html);
         Elements select = doc.select("table.out tr ");
