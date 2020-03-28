@@ -47,10 +47,17 @@ project(':util') {
         compile group: 'junit', name: 'junit', version: '4.12'
     }
 }
+project(':utilities') {
+    dependencies {
+        compile group: 'junit', name: 'junit', version: '4.12'
+        compile 'org.jsoup:jsoup:1.13.1'
+    }
+}
 
 configure(subprojects.findAll {it.name != 'util'}) {
     dependencies {
         compile project(':util').sourceSets.main.output
         testCompile project(':util').sourceSets.test.output
+
     }
 }

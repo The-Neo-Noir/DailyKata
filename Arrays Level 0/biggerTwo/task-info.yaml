@@ -4,7 +4,7 @@ files:
   visible: true
   placeholders:
   - offset: 74
-    length: 97
+    length: 117
     placeholder_text: type here
 - name: test/Tests.java
   visible: false
