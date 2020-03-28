@@ -1,29 +1,30 @@
+package com.curiousneds;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import org.jsoup.select.NodeFilter;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import sun.awt.OSInfo;
-import sun.misc.OSEnvironment;
 
+import javax.xml.namespace.QName;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class GenTest {
-    @org.junit.Test
-    @SuppressWarnings(value = "his")
-    public void fsn() throws IOException {
-        String parseText="→";
-        int idex=2;
+public class ConvertTotable {
+    public static void main(String[] args) throws MalformedURLException {
+        String parseText = "→";
+        int idex = 2;
 
         if (!OSInfo.getOSType().equals(OSInfo.OSType.MACOSX)) {
             parseText = "";
@@ -87,10 +88,10 @@ public class GenTest {
     private static String buildString(String input) {
         if (input.contains("[")) { // for array type
 
-            StringBuffer result= new StringBuffer();
+            StringBuffer result = new StringBuffer();
             int numberOfElements = 0;
-           //[1,2]
-          //  [3,4],[3,2]
+            //[1,2]
+            //  [3,4],[3,2]
             StringBuffer intreme = new StringBuffer();
             for (char ch : input.toCharArray()) {
                 if (ch == '[') {
@@ -98,17 +99,17 @@ public class GenTest {
 
                 } else if (ch == ']') {
                     intreme.append("}");
-                    if(result.length()==0){
+                    if (result.length() == 0) {
                         result.append("new int[]");
-                    }else{
+                    } else {
                         result.append(",new int[]");
                     }
                     result.append(intreme);
                     intreme = new StringBuffer();
-                } else if(ch==','){
-                     if(!intreme.toString().equals(""))
+                } else if (ch == ',') {
+                    if (!intreme.toString().equals(""))
                         intreme.append(ch + "");
-                }else{
+                } else {
                     intreme.append(ch + "");
                 }
             }
@@ -116,7 +117,7 @@ public class GenTest {
         } else if (input.contains("true") || input.contains("false")) {
             return input;
 
-        }else{
+        } else {
             return input;
         }
     }
