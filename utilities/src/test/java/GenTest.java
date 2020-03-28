@@ -5,6 +5,8 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import org.jsoup.select.NodeFilter;
 import org.w3c.dom.NodeList;
+import sun.awt.OSInfo;
+import sun.misc.OSEnvironment;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -19,34 +21,42 @@ import java.nio.charset.StandardCharsets;
 public class GenTest {
     @org.junit.Test
     public void fsn() throws IOException {
+        String parseText="→";
+        int idex=2;
+        if (!OSInfo.getOSType().equals(OSInfo.OSType.MACOSX)) {
+            parseText = "";
+            idex = 8;
+        }
 
         String html = "<table class=\"out\">\n" +
                 "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>modThree([2, 1, 3, 5]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>count7(717) → 2</td><td>2</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([2, 1, 2, 5]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(7) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([2, 4, 2, 5]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>count7(123) → 0</td><td>0</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([1, 2, 1, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(77) → 2</td><td>2</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([9, 9, 9]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>count7(7123) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([1, 2, 1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(771237) → 3</td><td>3</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([1, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(771737) → 4</td><td>4</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([1]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(47571) → 2</td><td>2</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(777777) → 6</td><td>6</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([9, 7, 2, 9]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(70701277) → 4</td><td>4</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([9, 7, 2, 9, 2, 2]) → false</td><td>false</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "<tr><td>count7(777576197) → 5</td><td>5</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td>modThree([9, 7, 2, 9, 2, 2, 6]) → true</td><td>false</td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>count7(99999) → 0</td><td>0</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "\n" +
-                "<tr><td><center>other tests</center></td><td></td><td>X</td><td class=\"no\"></td></tr>\n" +
+                "<tr><td>count7(99799) → 1</td><td>1</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+                "\n" +
+                "<tr><td><center>other tests</center></td><td></td><td>OK</td><td class=\"ok\"></td></tr>\n" +
                 "</tbody></table>";
         Document doc = Jsoup.parseBodyFragment(html);
         Elements select = doc.select("table.out tr ");
@@ -60,13 +70,13 @@ public class GenTest {
                     if (!element1.is("th")) {
                         String text = new String(element1.text().getBytes(
                                 StandardCharsets.UTF_8));
-                        int i1 = text.indexOf("→");
+                        int i1 = text.indexOf(parseText);
                         if (i1 != -1) {
                             // assertEquals("mgs",)
                             String substring = text.substring(0, i1);
                             String functionName = substring.substring(0, substring.indexOf("("));
                             String paramter = substring.substring(substring.indexOf("(") + 1, substring.length() - 2);
-                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + 2)) + ",task." + functionName + "(" + buildString(paramter) + "));");
+                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + idex)) + ",task." + functionName + "(" + buildString(paramter) + "));");
                         }
                     }
 
