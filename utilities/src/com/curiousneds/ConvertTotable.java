@@ -48,7 +48,7 @@ public class ConvertTotable {
                             String substring = text.substring(0, i1);
                             String functionName = substring.substring(0, substring.indexOf("("));
                             String paramter = substring.substring(substring.indexOf("(") + 1, substring.length() - 2);
-                            tests.append("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + idex)) + ",task." + functionName + "(" + buildString(paramter) + "));\n");
+                            tests.append("assertEquals(\"" + escapeDoubleQuotes(text) + "\"," + buildString(text.substring(i1 + idex)) + ",task." + functionName + "(" + buildString(paramter) + "));\n");
 
                         }
                     }
@@ -72,7 +72,9 @@ public class ConvertTotable {
 
 
     }
-
+    private static String escapeDoubleQuotes(String input){
+        return  input.replaceAll("\"", "\\\\\"");
+    }
     private static String buildString(String input) {
         if (input.contains("[")) { // for array type
 
@@ -105,7 +107,10 @@ public class ConvertTotable {
         } else if (input.contains("true") || input.contains("false")) {
             return input;
 
-        } else {
+        } else if(input.contains("\"")){
+            System.out.println( input.replaceAll("\"","\""));
+            return input.replaceAll("\"","\"");
+        }else{
             return input;
         }
     }
