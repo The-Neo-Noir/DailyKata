@@ -11,7 +11,6 @@ import static org.junit.Assert.assertEquals;
 public class Tests {
 
 
-    @Test
     public void testSolution() throws URISyntaxException, IOException {
         File f = new File(".");
         String html = "<table><tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr><tr><td>triangle(0) → 0</td><td>0</td><td>OK</td><td></td></tr><tr><td>triangle(1) → 1</td><td>1</td><td>OK</td><td></td></tr><tr><td>triangle(2) → 3</td><td>3</td><td>OK</td><td></td></tr><tr><td>triangle(3) → 6</td><td>6</td><td>OK</td><td></td></tr><tr><td>triangle(4) → 10</td><td>10</td><td>OK</td><td></td></tr><tr><td>triangle(5) → 15</td><td>15</td><td>OK</td><td></td></tr><tr><td>triangle(6) → 21</td><td>21</td><td>OK</td><td></td></tr><tr><td>triangle(7) → 28</td><td>28</td><td>OK</td><td></td></tr><tr><td><center>other tests</center></td><td></td><td>OK</td><td></td></tr></tbody></table>";
