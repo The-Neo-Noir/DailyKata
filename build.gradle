@@ -12,6 +12,7 @@ def printOutput(def output) {
     }
 }
 
+
 subprojects {
     apply plugin: 'application'
     apply plugin: 'java'

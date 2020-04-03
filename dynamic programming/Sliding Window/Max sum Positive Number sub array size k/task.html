@@ -1,0 +1,19 @@
+<html>
+
+<div class="hint">
+  Are you doing some over work , in the inner loop ? you can just add and subtract from the previous calculated values.
+</div>
+// this one below is not optimised , use sliding window technique .
+for (int i = 0; i <= in.length - k; i++) {
+int sum = 0;
+for (int j = 0; j < k; j++) {
+sum += in[i + j];
+}
+if (sum > max) {
+max = sum;
+start = i;
+endIndex = i + k - 1;
+}
+}
+<a href="https://www.youtube.com/watch?v=__guhvzO540"> https://www.youtube.com/watch?v=__guhvzO540 </a>
+</html>
