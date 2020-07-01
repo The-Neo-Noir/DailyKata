@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.junit.Test;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import sun.awt.OSInfo;
@@ -57,13 +58,20 @@ public class ConvertTotable {
             }
         }
         StringBuffer sb = new StringBuffer();
+
+          sb.append("\nimport org.junit.Test;\n" +
+          "\n" +
+          "import static junit.framework.TestCase.assertEquals;\n" +
+          "\n" +
+          "        public class Tests {");
         sb.append("\n @Test\n" +
                 "  public void testn(){\n");
         sb.append("Task task = new Task();\n");
         sb.append(tests.toString());
         sb.append("\n}");
+        sb.append("\n}");
 
-        File f = new File(path + File.separator + "test" + File.separator + "Tests.java");
+        File f = new File(path + File.separator + File.separator + "Tests.java");
         FileWriter fileWriter = new FileWriter(f,true);
         fileWriter.append(sb.toString());
         fileWriter.flush();
@@ -115,58 +123,80 @@ public class ConvertTotable {
         }
     }
 
-    public static void main(String[] args) throws MalformedURLException {
-        String parseText = "→";
-        int idex = 2;
+    public static void main(String[] args) throws Exception {
 
-        if (!OSInfo.getOSType().equals(OSInfo.OSType.MACOSX)) {
-            parseText = "";
-            idex = 8;
+        File file = new File("/Users/theneonoir/IdeaProjects/DailyKata/utilities/src/com/curiousneds/input.txt");
+
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st = "";
+        StringBuffer sbr = new StringBuffer();
+        while ((st = br.readLine()) != null) {
+            sbr.append(st);
         }
-
-        String html = "<table class=\"out\">\n" +
-                "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
-                "<tr><td>shiftLeft([6, 2, 5, 3]) → [2, 5, 3, 6]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>shiftLeft([1, 2]) → [2, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>shiftLeft([1]) → [1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>shiftLeft([]) → []</td><td>[]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>shiftLeft([1, 1, 2, 2, 4]) → [1, 2, 2, 4, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>shiftLeft([1, 1, 1]) → [1, 1, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td>shiftLeft([1, 2, 3]) → [2, 3, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "\n" +
-                "<tr><td><center>other tests</center></td><td></td><td>X</td><td class=\"no\"></td></tr>\n" +
-                "</tbody></table>";
-        Document doc = Jsoup.parseBodyFragment(html);
-        Elements select = doc.select("table.out tr ");
-        System.out.println("Task task = new Task();");
-        for (Element element : select) {
-            Elements children = element.children();
-            for (int i = 0; i < children.size(); i++) {
-                if (i % 4 == 0) {
-                    // if (!element.is("tr th")) {
-                    Element element1 = children.get(i);
-                    if (!element1.is("th")) {
-                        String text = new String(element1.text().getBytes(
-                                StandardCharsets.UTF_8));
-                        int i1 = text.indexOf(parseText);
-                        if (i1 != -1) {
-                            // assertEquals("mgs",)
-                            String substring = text.substring(0, i1);
-                            String functionName = substring.substring(0, substring.indexOf("("));
-                            String paramter = substring.substring(substring.indexOf("(") + 1, substring.length() - 2);
-                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + idex)) + ",task." + functionName + "(" + buildString(paramter) + "));");
-                        }
-                    }
-
-                }
-            }
-        }
+        String htmls = sbr.toString();
+        fsn(htmls,".");
+//        String parseText = "→";
+//        int idex = 2;
+//
+//        if (!OSInfo.getOSType().equals(OSInfo.OSType.MACOSX)) {
+//            parseText = "";
+//            idex = 8;
+//        }
+//        File file = new File("input.txt");
+//
+//
+//        BufferedReader br = new BufferedReader(new FileReader(file));
+//        String st = "";
+//        StringBuffer sbr = new StringBuffer();
+//        while ((st = br.readLine()) != null) {
+//            sbr.append(st);
+//        }
+//        String htmls = sbr.toString();
+//
+//        String html = "<table class=\"out\">\n" +
+//                "<tbody><tr><th>Expected</th><th>Run</th><th></th><th></th></tr>\n" +
+//                "<tr><td>shiftLeft([6, 2, 5, 3]) → [2, 5, 3, 6]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+//                "\n" +
+//                "<tr><td>shiftLeft([1, 2]) → [2, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+//                "\n" +
+//                "<tr><td>shiftLeft([1]) → [1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+//                "\n" +
+//                "<tr><td>shiftLeft([]) → []</td><td>[]</td><td>OK</td><td class=\"ok\"></td></tr>\n" +
+//                "\n" +
+//                "<tr><td>shiftLeft([1, 1, 2, 2, 4]) → [1, 2, 2, 4, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+//                "\n" +
+//                "<tr><td>shiftLeft([1, 1, 1]) → [1, 1, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+//                "\n" +
+//                "<tr><td>shiftLeft([1, 2, 3]) → [2, 3, 1]</td><td>[<span class=\"no\">]</span></td><td>X</td><td class=\"no\"></td></tr>\n" +
+//                "\n" +
+//                "<tr><td><center>other tests</center></td><td></td><td>X</td><td class=\"no\"></td></tr>\n" +
+//                "</tbody></table>";
+//        Document doc = Jsoup.parseBodyFragment(html);
+//        Elements select = doc.select("table.out tr ");
+//        System.out.println("Task task = new Task();");
+//        for (Element element : select) {
+//            Elements children = element.children();
+//            for (int i = 0; i < children.size(); i++) {
+//                if (i % 4 == 0) {
+//                    // if (!element.is("tr th")) {
+//                    Element element1 = children.get(i);
+//                    if (!element1.is("th")) {
+//                        String text = new String(element1.text().getBytes(
+//                                StandardCharsets.UTF_8));
+//                        int i1 = text.indexOf(parseText);
+//                        if (i1 != -1) {
+//                            // assertEquals("mgs",)
+//                            String substring = text.substring(0, i1);
+//                            String functionName = substring.substring(0, substring.indexOf("("));
+//                            String paramter = substring.substring(substring.indexOf("(") + 1, substring.length() - 2);
+//                            System.out.println("assertEquals(\"" + text + "\"," + buildString(text.substring(i1 + idex)) + ",task." + functionName + "(" + buildString(paramter) + "));");
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
 
     }
 
