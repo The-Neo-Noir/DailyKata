@@ -72,7 +72,9 @@ public class ConvertTotable {
         sb.append("\n}");
 
         File f = new File(path + File.separator + File.separator + "Tests.java");
+
         FileWriter fileWriter = new FileWriter(f,true);
+
         fileWriter.append(sb.toString());
         fileWriter.flush();
         ;
