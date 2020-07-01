@@ -16,3 +16,5 @@ content:
 - StringCount
 - Array 6
 - ReverseString
+- changePi
+- FindMin

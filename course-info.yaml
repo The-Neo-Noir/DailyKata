@@ -5,6 +5,7 @@ summary: |-
    Created: Mar 20, 2020, 4:20:59 PM.
 programming_language: Java
 content:
+- Sorting
 - Arrays Level 0
 - Arrays Level 1
 - Arrays Interview Easy
@@ -13,3 +14,4 @@ content:
 - Sorting
 - Math Level 0
 - Trees
+- dynamic programming
