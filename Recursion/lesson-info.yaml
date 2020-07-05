@@ -1,24 +1,31 @@
 content:
 - Factorial
-- PowerXtoY
-- CountNumberOf7s
-- sumOfDigitsInANumber
 - BunnEarsCount
-- CountX
-- Triangle
-- CountAbc
-- Count7
 - Fibonacci
 - BunnyEars
+- Triangle
+- sumOfDigitsInANumber
+- Count7
 - Count8
-- ParenBit
-- Array11
-- StringCount
-- Array 6
-- ReverseString
+- PowerXtoY
+- CountX
+- CountHi
+- changeXToY
 - changePi
-- FindMin
-- allStar
 - noX
+- Array 6
+- Array11
+- allStar
+- pairStar
+- endX
 - CountPairs
+- CountAbc
+- stringClean
 - countHi2
+- ParenBit
+- nestParen
+- StringCount
+- StringCopies
+- ReverseString
+- CountNumberOf7s
+- FindMin
