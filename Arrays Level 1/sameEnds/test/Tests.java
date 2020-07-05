@@ -1,19 +1,26 @@
-import org.junit.Assert;
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
 public class Tests {
   @Test
-  public void testSolution() {
+  public void testn(){
     Task task = new Task();
-    assertEquals("shiftLeft([6, 2, 5, 3]) Ã¢â€ â€™ [2, 5, 3, 6]",new int[] {2, 5, 3, 6},task.shiftLeft(new int[]{6, 2, 5, 3}));
-    assertEquals("shiftLeft([1, 2]) Ã¢â€ â€™ [2, 1]",new int[] {2, 1},task.shiftLeft(new int[]{1, 2}));
-    assertEquals("shiftLeft([1]) Ã¢â€ â€™ [1]",new int[] {1},task.shiftLeft(new int[]{1}));
-    assertEquals("shiftLeft([]) Ã¢â€ â€™ []",new int[] {},task.shiftLeft(new int[]{}));
-    assertEquals("shiftLeft([1, 1, 2, 2, 4]) Ã¢â€ â€™ [1, 2, 2, 4, 1]",new int[] {1, 2, 2, 4, 1},task.shiftLeft(new int[]{1, 1, 2, 2, 4}));
-    assertEquals("shiftLeft([1, 1, 1]) Ã¢â€ â€™ [1, 1, 1]",new int[] {1, 1, 1},task.shiftLeft(new int[]{1, 1, 1}));
-    assertEquals("shiftLeft([1, 2, 3]) Ã¢â€ â€™ [2, 3, 1]",new int[] {2, 3, 1},task.shiftLeft(new int[]{1, 2, 3}));
+    assertEquals("sameEnds([5, 6, 45, 99, 13, 5, 6], 1) → false",false,task.sameEnds(new int[]{5, 6, 45, 99, 13, 5, 6},1));
+    assertEquals("sameEnds([5, 6, 45, 99, 13, 5, 6], 2) → true",true,task.sameEnds(new int[]{5, 6, 45, 99, 13, 5, 6},2));
+    assertEquals("sameEnds([5, 6, 45, 99, 13, 5, 6], 3) → false",false,task.sameEnds(new int[]{5, 6, 45, 99, 13, 5, 6},3));
+    assertEquals("sameEnds([1, 2, 5, 2, 1], 1) → true",true,task.sameEnds(new int[]{1, 2, 5, 2, 1},1));
+    assertEquals("sameEnds([1, 2, 5, 2, 1], 2) → false",false,task.sameEnds(new int[]{1, 2, 5, 2, 1},2));
+    assertEquals("sameEnds([1, 2, 5, 2, 1], 0) → true",true,task.sameEnds(new int[]{1, 2, 5, 2, 1},0));
+    assertEquals("sameEnds([1, 2, 5, 2, 1], 5) → true",true,task.sameEnds(new int[]{1, 2, 5, 2, 1},5));
+    assertEquals("sameEnds([1, 1, 1], 0) → true",true,task.sameEnds(new int[]{1, 1, 1},0));
+    assertEquals("sameEnds([1, 1, 1], 1) → true",true,task.sameEnds(new int[]{1, 1, 1},1));
+    assertEquals("sameEnds([1, 1, 1], 2) → true",true,task.sameEnds(new int[]{1, 1, 1},2));
+    assertEquals("sameEnds([1, 1, 1], 3) → true",true,task.sameEnds(new int[]{1, 1, 1},3));
+    assertEquals("sameEnds([1], 1) → true",true,task.sameEnds(new int[]{1},1));
+    assertEquals("sameEnds([], 0) → true",true,task.sameEnds(new int[]{},0));
+    assertEquals("sameEnds([4, 2, 4, 5], 1) → false",false,task.sameEnds(new int[]{4, 2, 4, 5},1));
 
   }
 }

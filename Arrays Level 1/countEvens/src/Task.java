@@ -1,9 +1,12 @@
 public class Task {
     public int countEvens(int[] nums) {
         int count=0;
-        for (Integer in : nums) {
-            if(in%2==0) count++;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i]==13){
+
+            }else{
+                sum+
+            }
         }
-        return count;
     }
 }
